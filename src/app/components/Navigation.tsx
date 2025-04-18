@@ -14,7 +14,7 @@ const navigation = [
 export default function Navigation() {
     return (
         <nav className="bg-white dark:bg-gray-900 shadow-sm">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex gap-4 justify-center mt-3 mb-3">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex gap-4 justify-center mt-2 mb-2">
                 {navigation.map((item) => (
                     <Link key={item.name} href={item.href}>
                         {item.name}
