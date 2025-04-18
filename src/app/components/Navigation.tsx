@@ -2,7 +2,7 @@
 import Link from 'next/link';
 
 const navigation = [
-    { name: 'Home', href: '/' },
+    { name: 'Accueil', href: '/' },
     { name: 'Labelisation', href: '/labelisation' },
     { name: 'Restaurants', href: '/restaurants' },
     { name: 'Produits', href: '/produits' },
