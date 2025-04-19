@@ -20,16 +20,9 @@ export default function Navigation() {
         <nav className="bg-white dark:bg-gray-900 shadow-sm">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between mt-2 mb-2">
                 <Link href="/" className="flex items-center">
-                    <Image 
-                        src="/logo.jpeg"
-                        alt="Logo SofoQuality"
-                        width={80}
-                        height={40}
-                        className="rounded-4xl invert"
-                        priority
-                    />
+                <span className="logo">sofō</span>
                 </Link>
-                <span className="logo">Sofō</span>
+                
                 {/* Burger menu button (visible sur mobile) */}
                 <button
                     className="sm:hidden flex flex-col justify-center items-center w-10 h-10"
