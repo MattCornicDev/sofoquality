@@ -12,7 +12,7 @@ export default function Home() {
 
       {/* Présentation rapide */}
       <section className="py-12 px-4 max-w-4xl mx-auto text-center">
-        <h2 className="text-2xl font-semibold mb-2">Qu'est-ce que SofoQuality ?</h2>
+        <h2 className="text-2xl font-semibold mb-2">Qu&apos; est-ce que SofoQuality ?</h2>
         <p className="text-gray-700 dark:text-gray-200">
           SofoQuality accompagne les restaurants et producteurs dans leur démarche qualité, valorise les bonnes pratiques et met en avant les établissements labellisés.
         </p>
@@ -97,7 +97,7 @@ export default function Home() {
                 height={128}
                 className="w-full h-24 object-cover rounded mb-2"
               />
-              <h4 className="font-bold text-center">Huile d'olive</h4>
+              <h4 className="font-bold text-center">Huile d&apos; olive</h4>
             </div>
             {/* Ajoute d'autres produits ici */}
           </div>
