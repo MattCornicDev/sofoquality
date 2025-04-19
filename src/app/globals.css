@@ -10,6 +10,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  
 }
 
 @media (prefers-color-scheme: dark) {
@@ -26,3 +27,17 @@ body {
 }
 
 /* Add this to ensure the burger menu works */
+.logo {
+  background: rgb(156, 194, 88); /* vert */
+  color: #fff;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}

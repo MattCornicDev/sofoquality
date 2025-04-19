@@ -29,6 +29,7 @@ export default function Navigation() {
                         priority
                     />
                 </Link>
+                <span className="logo">Sofō</span>
                 {/* Burger menu button (visible sur mobile) */}
                 <button
                     className="sm:hidden flex flex-col justify-center items-center w-10 h-10"
