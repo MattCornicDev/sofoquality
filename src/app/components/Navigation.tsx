@@ -25,7 +25,7 @@ export default function Navigation() {
                         alt="Logo SofoQuality"
                         width={80}
                         height={40}
-                        className="rounded-triangle"
+                        className="rounded-4xl"
                         priority
                     />
                 </Link>

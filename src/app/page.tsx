@@ -113,8 +113,8 @@ export default function Home() {
         <div className="flex flex-wrap gap-6 justify-center items-center">
           {/* Exemple de logo partenaire */}
           <Image
-            src="/images/Armoiries-du-Maroc.png"
-            alt="Armoiries du Maroc"
+            src="/images/Armoiries-du-Maro.png"
+            alt="Armoiries"
             width={128}
             height={128}
             className="h-22"
