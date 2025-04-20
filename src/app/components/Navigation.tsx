@@ -11,6 +11,7 @@ const navigation = [
     { name: 'Partenariats', href: '/partenariats' },
     { name: 'Ressources', href: '/ressources' },
     { name: 'Contact', href: '/contact' },
+    { name: 'Utilisateurs', href: '/utilisateurs' },
 ];
 
 export default function Navigation() {
