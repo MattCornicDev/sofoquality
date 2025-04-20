@@ -21,7 +21,6 @@ export default function Navigation() {
                 <Link href="/" className="flex items-center">
                 <span className="logo">sofō</span>
                 </Link>
-                
                 {/* Burger menu button (visible sur mobile) */}
                 <button
                     className="sm:hidden flex flex-col justify-center items-center w-10 h-10"
