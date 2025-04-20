@@ -1,6 +1,5 @@
 'use client'
 import Link from 'next/link';
-import Image from 'next/image';
 import { useState } from 'react';
 
 const navigation = [
@@ -21,14 +20,7 @@ export default function Navigation() {
         <nav className="bg-white dark:bg-gray-900 shadow-sm">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between mt-2 mb-2">
                 <Link href="/" className="flex items-center">
-                    <Image 
-                        src="/logo.jpeg"
-                        alt="Logo SofoQuality"
-                        width={80}
-                        height={40}
-                        className="rounded-triangle"
-                        priority
-                    />
+                <span className="logo">sofō</span>
                 </Link>
                 {/* Burger menu button (visible sur mobile) */}
                 <button
