@@ -1,11 +1,13 @@
+import styles from './Footer.module.css';
+
 export default function Footer() {
     return (
-      <footer className="bg-gray-100 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 mt-12">
+      <footer className={styles.footer}>
         <div className="max-w-7xl mx-auto px-4 py-10 flex flex-col md:flex-row justify-between items-center gap-6">
           {/* Logo et nom */}
           <div className="flex items-center gap-2">
             <span className="logo">sofō</span>
-            <span className="text-lg font-bold text-green-700 dark:text-green-400">SofoQuality</span>
+            <span className="text-lg font-bold text-blue-400 dark:text-blue-600">SofoQuality</span>
           </div>
   
           {/* Liens rapides */}
@@ -18,7 +20,7 @@ export default function Footer() {
           </nav>
   
           {/* Coordonnées */}
-          <div className="text-xs text-gray-600 dark:text-gray-300 text-center md:text-right">
+          <div className="text-xs text-gray-100 dark:text-gray-300 text-center md:text-right">
             <div>Email : <a href="mailto:contact@sofoquality.com" className="underline">contact@sofoquality.com</a></div>
             {/* <div>Tél : 01 23 45 67 89</div> */}
           </div>

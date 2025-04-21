@@ -1,0 +1,88 @@
+.container {
+    width: 30vw;
+    height: 30vw;
+    position: fixed;
+    top: 40%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    z-index: -10;
+    opacity: 1;
+}
+
+.arabesque {
+    overflow: auto;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    animation-name: spin;
+    animation-duration: 40000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    -webkit-animation-name: spin;
+    -webkit-animation-duration: 40000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-name: spin;
+    -moz-animation-duration: 40000ms;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    -ms-animation-name: spin;
+    -ms-animation-duration: 40000ms;
+    -ms-animation-iteration-count: infinite;
+    -ms-animation-timing-function: linear;
+    fill: rgb(114, 75, 40);
+}
+
+.second {
+    animation-duration: 20000ms;
+    -webkit-animation-duration: 20000ms;
+    -moz-animation-duration: 20000ms;
+    -ms-animation-duration: 20000ms;
+    fill: #a97c50;
+}
+
+.third {
+    animation-duration: 9000ms;
+    -webkit-animation-duration: 9000ms;
+    -moz-animation-duration: 9000ms;
+    -ms-animation-duration: 9000ms;
+    width: 80%;
+    fill: #d39b11;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@-moz-keyframes spin {
+    from {
+        -moz-transform: rotate(0deg);
+    }
+    to {
+        -moz-transform: rotate(360deg);
+    }
+}
+@-ms-keyframes spin {
+    from {
+        -ms-transform: rotate(0deg);
+    }
+    to {
+        -ms-transform: rotate(360deg);
+    }
+}

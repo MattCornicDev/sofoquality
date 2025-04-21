@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Labelisation() {
   return (
     <main className="max-w-3xl mx-auto px-4 py-10">
@@ -27,9 +29,9 @@ export default function Labelisation() {
         Les critères portent sur la qualité des produits, l’hygiène, la traçabilité, l’engagement environnemental, etc.
       </p>
 
-      <a href="/contact" className="inline-block bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition">
+      <Link href="/contact" className="bouton inline-block bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition">
         Demander la labellisation
-      </a>
+      </Link>
     </main>
   );
 }

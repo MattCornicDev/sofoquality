@@ -2,11 +2,11 @@ export default function Contact() {
   return (
     <main className="max-w-2xl mx-auto px-4 py-10">
       <h1 className="text-3xl font-bold mb-4">Contactez-nous</h1>
-      <p className="mb-8 text-gray-700">
+      <p className="mt-10 mb-10 text-gray-700">
         Une question ? Un projet ? N’hésitez pas à nous écrire via ce formulaire ou à utiliser nos coordonnées ci-dessous.
       </p>
 
-      <form className="mb-8 flex flex-col gap-4">
+      <form className="mt-10 mb-10 flex flex-col gap-4">
         <input
           type="text"
           name="name"
@@ -30,7 +30,7 @@ export default function Contact() {
         />
         <button
           type="submit"
-          className="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition"
+          className="bouton text-white px-6 py-3 rounded-lg font-semibold transition"
         >
           Envoyer
         </button>
