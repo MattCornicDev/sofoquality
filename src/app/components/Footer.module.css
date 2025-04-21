@@ -1,9 +1,3 @@
-:root {
-    --background: rgb(251, 235, 217);
-    --foreground: #171717;
-    --background-footer: rgb(108, 77, 46);
-  }
-
 .footer {
     background: var(--background-footer);
     color: var(--background);
