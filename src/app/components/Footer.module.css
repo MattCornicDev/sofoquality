@@ -1,10 +1,5 @@
 .footer {
-    background: linear-gradient(
-    to bottom,
-    var(--background) 0%,
-    var(--background-footer) 100%
-  );
-
+    background: var(--background-footer);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   min-height: 10vh;

@@ -8,7 +8,7 @@ export default function Footer() {
           {/* Logo et nom */}
           <div className="flex items-center gap-2">
             <span className="logo">sofō</span>
-            <span className="text-lg font-bold text-blue-400 dark:text-blue-600">SofoQuality</span>
+            <span className="text-lg font-bold text-red-400 dark:text-red-600">SofoQuality</span>
           </div>
   
           {/* Liens rapides */}
@@ -23,7 +23,8 @@ export default function Footer() {
           {/* Coordonnées */}
           <div className="text-xs text-gray-100 dark:text-gray-300 text-center md:text-right">
             <div>Email : <a href="mailto:contact@sofoquality.com" className="underline">contact@sofoquality.com</a></div>
-            {/* <div>Tél : 01 23 45 67 89</div> */}
+            <div>Siège social : Hay el Fath immeuble 24 10150 Rabat</div>
+            <div>Tel : +33(0)6 43 43 98 28</div>
           </div>
         </div>
   
