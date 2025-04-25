@@ -27,7 +27,10 @@ export default function Contact() {
       });
       setSuccess(true);
       // Réinitialiser le formulaire
-      (e.currentTarget as HTMLFormElement).reset();
+      const form = e.currentTarget as HTMLFormElement;
+      if (form) {
+        form.reset();
+      }
     } catch (error) {
       console.error('Erreur:', error);
     } finally {
