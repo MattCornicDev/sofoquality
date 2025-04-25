@@ -39,7 +39,7 @@ export default function Contact() {
     <main className="max-w-2xl mx-auto px-4 py-10">
       <h1 className="text-3xl font-bold mb-4">Contactez-nous</h1>
       <p className="mt-10 mb-10 text-gray-700">
-        Une question ? Un projet ? N'hésitez pas à nous écrire via ce formulaire ou à utiliser nos coordonnées ci-dessous.
+        Une question ? Un projet ? N&apos;hésitez pas à nous écrire via ce formulaire ou à utiliser nos coordonnées ci-dessous.
       </p>
 
       <form onSubmit={handleSubmit} className="mt-10 mb-10 flex flex-col gap-4">
