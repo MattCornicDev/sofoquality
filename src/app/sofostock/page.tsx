@@ -66,6 +66,41 @@ const [suppliers, setSuppliers] = useState([
     // ... autres commandes
   ]);
 
+  // État pour la nouvelle commande
+  const [newOrder, setNewOrder] = useState({
+    supplier: '',
+    date: new Date().toISOString().split('T')[0],
+    status: 'En attente',
+    items: []
+  });
+
+  // Fonction pour ajouter une nouvelle commande
+  const handleAddOrder = (e: React.FormEvent) => {
+    e.preventDefault();
+    const newOrd = { ...newOrder, id: Date.now() };
+    setOrders([...orders, newOrd]);
+    setNewOrder({
+      supplier: '',
+      date: new Date().toISOString().split('T')[0],
+      status: 'En attente',
+      items: []
+    });
+  };
+
+  // Fonction pour mettre à jour une commande
+  const handleUpdateOrder = (orderId: number, updatedOrder: any) => {
+    setOrders(orders.map(order =>
+      order.id === orderId ? { ...order, ...updatedOrder } : order
+    ));
+  };
+
+  // Fonction pour supprimer une commande
+  const handleDeleteOrder = (orderId: number) => {
+    if (window.confirm('Êtes-vous sûr de vouloir supprimer cette commande ?')) {
+      setOrders(orders.filter(order => order.id !== orderId));
+    }
+  };
+
   // Fonction pour ajouter un nouveau produit
   const handleAddProduct = (e: React.FormEvent) => {
     e.preventDefault();
