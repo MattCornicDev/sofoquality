@@ -4,12 +4,32 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="min-h-screen">
-      {/* Hero Section */}
-      <section className="py-16 text-center">
-        <h1 className="title text-4xl font-bold mb-4">Sofo Quality</h1>
-        <p className="text-lg mb-6">La référence pour la labellisation de la qualité dans la restauration et les produits alimentaires au Maroc.</p>
-        <Link href="/labelisation" className="bouton inline-block bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition">Découvrir la labellisation</Link>
+
+      
+       {/* Hero Section */}
+       <section className="py-66">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row gap-8">
+            {/* Sofo Quality */}
+            <div className="flex-1 text-center md:text-left">
+              <h1 className="title text-4xl font-bold mb-4">Sofo Quality</h1>
+              <p className="text-lg mb-6">La référence pour la labellisation de la qualité dans la restauration et les produits alimentaires au Maroc.</p>
+              <Link href="/labelisation" className="bouton inline-block bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition">Découvrir la labellisation</Link>
+            </div>
+
+            {/* Sofo Stock */}
+            <div className="flex-1 text-center md:text-right">
+              <h1 className="title text-4xl font-bold mb-4">Sofo Stock</h1>
+              <p className="text-lg mb-6">La solution complète pour la gestion de stock et la traçabilité des produits alimentaires.</p>
+              <Link href="/sofostock" className="bouton inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">Découvrir Sofo Stock</Link>
+            </div>
+          </div>
+        </div>
       </section>
+
+      {/* Ligne verticale */}
+      <div className="hidden md:block absolute top-1/3 bottom-1/3 left-1/2 w-0.5 bg-gray-300" />
+
 
       {/* Présentation rapide */}
       <section className="py-12 px-4 max-w-4xl mx-auto text-center">
