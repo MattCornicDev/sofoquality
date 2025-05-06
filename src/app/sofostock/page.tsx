@@ -127,6 +127,14 @@ export default function StockManagement() {
     setOrders(orders.map(order =>
       order.id === orderId ? { ...order, ...updatedOrder } : order
     ));
+    if (editingOrder === orderId) {
+      setEditingOrder(null);
+    }
+  };
+
+  // Fonction pour annuler la modification
+  const handleCancelEdit = () => {
+    setEditingOrder(null);
   };
 
   // Fonction pour supprimer une commande
@@ -358,10 +366,6 @@ export default function StockManagement() {
       {/* Section Commandes */}
       <section className="mb-8">
         <h2 className="text-2xl font-bold mb-4">Gestion des Commandes</h2>
-
-         {/* Section Commandes */}
-      <section className="mb-8">
-        <h2 className="text-2xl font-bold mb-4">Gestion des Commandes</h2>
         
         {/* Formulaire d'ajout de commande */}
         <form onSubmit={handleAddOrder} className="mb-6">
@@ -470,19 +474,23 @@ export default function StockManagement() {
                   <td className="p-4 border-b">{order.supplier}</td>
                   <td className="p-4 border-b">{order.date}</td>
                   <td className="p-4 border-b">
-                    <select
-                      value={order.status}
-                      onChange={(e) => {
-                        const newStatus = e.target.value as 'En attente' | 'En cours' | 'Livré' | 'Annulé';
-                        handleUpdateOrder(order.id, { status: newStatus });
-                      }}
-                      className="p-2 border rounded"
-                    >
-                      <option value="En attente">En attente</option>
-                      <option value="En cours">En cours</option>
-                      <option value="Livré">Livré</option>
-                      <option value="Annulé">Annulé</option>
-                    </select>
+                    {editingOrder === order.id ? (
+                      <select
+                        value={order.status}
+                        onChange={(e) => {
+                          const newStatus = e.target.value as 'En attente' | 'En cours' | 'Livré' | 'Annulé';
+                          handleUpdateOrder(order.id, { status: newStatus });
+                        }}
+                        className="p-2 border rounded"
+                      >
+                        <option value="En attente">En attente</option>
+                        <option value="En cours">En cours</option>
+                        <option value="Livré">Livré</option>
+                        <option value="Annulé">Annulé</option>
+                      </select>
+                    ) : (
+                      order.status
+                    )}
                   </td>
                   <td className="p-4 border-b">
                     {order.items.map((item, index) => (
@@ -496,44 +504,30 @@ export default function StockManagement() {
                     {order.items.reduce((total, item) => total + (item.quantity * item.price), 0).toFixed(2)}€
                   </td>
                   <td className="p-4 border-b">
+                    {editingOrder === order.id ? (
+                      <button
+                        type="button"
+                        onClick={handleCancelEdit}
+                        className="text-gray-600 hover:text-gray-800"
+                      >
+                        Annuler
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => setEditingOrder(order.id)}
+                        className="text-blue-600 hover:text-blue-800"
+                      >
+                        Modifier
+                      </button>
+                    )}
                     <button
-                      className="text-red-600 hover:text-red-800"
+                      type="button"
                       onClick={() => handleDeleteOrder(order.id)}
-                      title="Supprimer"
+                      className="ml-2 text-red-600 hover:text-red-800"
                     >
-                      ❌
+                      Supprimer
                     </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
-        
-        {/* Tableau des commandes */}
-        <div className="overflow-x-auto">
-          <table className="min-w-full bg-white border border-gray-300">
-            <thead>
-              <tr className="bg-gray-100">
-                <th className="p-4 border-b">Fournisseur</th>
-                <th className="p-4 border-b">Date</th>
-                <th className="p-4 border-b">Statut</th>
-                <th className="p-4 border-b">Items</th>
-              </tr>
-            </thead>
-            <tbody>
-              {orders.map((order) => (
-                <tr key={order.id}>
-                  <td className="p-4 border-b">{order.supplier}</td>
-                  <td className="p-4 border-b">{order.date}</td>
-                  <td className="p-4 border-b">{order.status}</td>
-                  <td className="p-4 border-b">
-                    {order.items.map((item) => (
-                      <div key={item.product}>
-                        {item.product} - {item.quantity} - {item.price}€
-                      </div>
-                    ))}
                   </td>
                 </tr>
               ))}
