@@ -2,9 +2,44 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
+interface Product {
+  id: number;
+  name: string;
+  category: string;
+  stock: number;
+  minStock: number;
+  price: number;
+  supplier: string;
+  expiration: string;
+}
+
+interface Supplier {
+  id: number;
+  name: string;
+  contact: string;
+  phone: string;
+  email: string;
+  address: string;
+  notes: string;
+}
+
+interface OrderItem {
+  product: string;
+  quantity: number;
+  price: number;
+}
+
+interface Order {
+  id: number;
+  supplier: string;
+  date: string;
+  status: 'En attente' | 'En cours' | 'Livré' | 'Annulé';
+  items: OrderItem[];
+}
+
 export default function StockManagement() {
   // États pour la gestion des produits
-  const [products, setProducts] = useState([
+  const [products, setProducts] = useState<Product[]>([
     {
       id: 1,
       name: 'Produit 1',
@@ -18,7 +53,7 @@ export default function StockManagement() {
     // ... autres produits
   ]);
 
-  const [newProduct, setNewProduct] = useState({
+  const [newProduct, setNewProduct] = useState<Partial<Product>>({
     name: '',
     category: '',
     stock: 0,
@@ -29,7 +64,7 @@ export default function StockManagement() {
   });
 
   // États pour la gestion des fournisseurs
-const [suppliers, setSuppliers] = useState([
+  const [suppliers, setSuppliers] = useState<Supplier[]>([
     {
       id: 1,
       name: 'Fournisseur 1',
@@ -48,11 +83,10 @@ const [suppliers, setSuppliers] = useState([
       address: '456 Avenue des Produits',
       notes: 'Livraison rapide'
     }
-    // ... autres fournisseurs
   ]);
 
   // États pour les commandes
-  const [orders, setOrders] = useState([
+  const [orders, setOrders] = useState<Order[]>([
     {
       id: 1,
       supplier: 'Fournisseur 1',
@@ -60,24 +94,25 @@ const [suppliers, setSuppliers] = useState([
       status: 'En attente',
       items: [
         { product: 'Produit 1', quantity: 50, price: 19.99 },
-        // ... autres items
       ],
     },
-    // ... autres commandes
   ]);
 
   // État pour la nouvelle commande
-  const [newOrder, setNewOrder] = useState({
+  const [newOrder, setNewOrder] = useState<Partial<Order>>({
     supplier: '',
     date: new Date().toISOString().split('T')[0],
     status: 'En attente',
-    items: []
+    items: [] as OrderItem[]
   });
+
+  // État pour la commande en cours de modification
+  const [editingOrder, setEditingOrder] = useState<number | null>(null);
 
   // Fonction pour ajouter une nouvelle commande
   const handleAddOrder = (e: React.FormEvent) => {
     e.preventDefault();
-    const newOrd = { ...newOrder, id: Date.now() };
+    const newOrd = { ...newOrder, id: Date.now() } as Order;
     setOrders([...orders, newOrd]);
     setNewOrder({
       supplier: '',
@@ -88,7 +123,7 @@ const [suppliers, setSuppliers] = useState([
   };
 
   // Fonction pour mettre à jour une commande
-  const handleUpdateOrder = (orderId: number, updatedOrder: any) => {
+  const handleUpdateOrder = (orderId: number, updatedOrder: Partial<Order>) => {
     setOrders(orders.map(order =>
       order.id === orderId ? { ...order, ...updatedOrder } : order
     ));
@@ -104,7 +139,7 @@ const [suppliers, setSuppliers] = useState([
   // Fonction pour ajouter un nouveau produit
   const handleAddProduct = (e: React.FormEvent) => {
     e.preventDefault();
-    const newProd = { ...newProduct, id: Date.now() };
+    const newProd = { ...newProduct, id: Date.now() } as Product;
     setProducts([...products, newProd]);
     setNewProduct({
       name: '',
@@ -123,8 +158,9 @@ const [suppliers, setSuppliers] = useState([
       product.id === productId ? { ...product, stock: newStock } : product
     ));
   };
+
   // État pour le nouveau fournisseur
-const [newSupplier, setNewSupplier] = useState({
+  const [newSupplier, setNewSupplier] = useState<Partial<Supplier>>({
     name: '',
     contact: '',
     phone: '',
@@ -132,11 +168,11 @@ const [newSupplier, setNewSupplier] = useState({
     address: '',
     notes: '',
   });
-  
+
   // Fonction pour ajouter un nouveau fournisseur
   const handleAddSupplier = (e: React.FormEvent) => {
     e.preventDefault();
-    const newSupp = { ...newSupplier, id: Date.now() };
+    const newSupp = { ...newSupplier, id: Date.now() } as Supplier;
     setSuppliers([...suppliers, newSupp]);
     setNewSupplier({
       name: '',
@@ -147,14 +183,14 @@ const [newSupplier, setNewSupplier] = useState({
       notes: '',
     });
   };
-  
+
   // Fonction pour mettre à jour un fournisseur
-  const handleUpdateSupplier = (supplierId: number, updatedSupplier: any) => {
+  const handleUpdateSupplier = (supplierId: number, updatedSupplier: Partial<Supplier>) => {
     setSuppliers(suppliers.map(supplier =>
       supplier.id === supplierId ? { ...supplier, ...updatedSupplier } : supplier
     ));
   };
-  
+
   // Fonction pour supprimer un fournisseur
   const handleDeleteSupplier = (supplierId: number) => {
     if (window.confirm('Êtes-vous sûr de vouloir supprimer ce fournisseur ?')) {
@@ -322,6 +358,158 @@ const [newSupplier, setNewSupplier] = useState({
       {/* Section Commandes */}
       <section className="mb-8">
         <h2 className="text-2xl font-bold mb-4">Gestion des Commandes</h2>
+
+         {/* Section Commandes */}
+      <section className="mb-8">
+        <h2 className="text-2xl font-bold mb-4">Gestion des Commandes</h2>
+        
+        {/* Formulaire d'ajout de commande */}
+        <form onSubmit={handleAddOrder} className="mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <select
+              value={newOrder.supplier}
+              onChange={(e) => setNewOrder({ ...newOrder, supplier: e.target.value })}
+              className="p-2 border rounded"
+              required
+            >
+              <option value="">Sélectionnez un fournisseur</option>
+              {suppliers.map((supplier) => (
+                <option key={supplier.id} value={supplier.name}>
+                  {supplier.name}
+                </option>
+              ))}
+            </select>
+            <input
+              type="date"
+              value={newOrder.date}
+              onChange={(e) => setNewOrder({ ...newOrder, date: e.target.value })}
+              className="p-2 border rounded"
+              required
+            />
+            <div className="col-span-2">
+              <div className="flex flex-col gap-2">
+                {newOrder.items && newOrder.items.map((item, index) => (
+                  <div key={index} className="flex gap-2">
+                    <select
+                      value={item.product}
+                      onChange={(e) => {
+                        const newItems = [...newOrder.items || []];
+                        newItems[index] = { ...item, product: e.target.value };
+                        setNewOrder({ ...newOrder, items: newItems });
+                      }}
+                      className="p-2 border rounded"
+                    >
+                      <option value="">Sélectionnez un produit</option>
+                      {products.map((product) => (
+                        <option key={product.id} value={product.name}>
+                          {product.name}
+                        </option>
+                      ))}
+                    </select>
+                    <input
+                      type="number"
+                      value={item.quantity}
+                      onChange={(e) => {
+                        const newItems = [...newOrder.items || []];
+                        newItems[index] = { ...item, quantity: parseInt(e.target.value) };
+                        setNewOrder({ ...newOrder, items: newItems });
+                      }}
+                      className="p-2 border rounded w-24"
+                      min="1"
+                      required
+                    />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const newItems = [...newOrder.items || []];
+                        newItems.splice(index, 1);
+                        setNewOrder({ ...newOrder, items: newItems });
+                      }}
+                      className="text-red-600 hover:text-red-800"
+                    >
+                      Supprimer
+                    </button>
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setNewOrder({
+                      ...newOrder,
+                      items: [...newOrder.items || [], { product: '', quantity: 1, price: 0 }]
+                    });
+                  }}
+                  className="text-blue-600 hover:text-blue-800"
+                >
+                  Ajouter un produit
+                </button>
+              </div>
+            </div>
+          </div>
+          <button type="submit" className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+            Ajouter la commande
+          </button>
+        </form>
+
+        {/* Tableau des commandes */}
+        <div className="overflow-x-auto">
+          <table className="min-w-full bg-white border border-gray-300">
+            <thead>
+              <tr className="bg-gray-100">
+                <th className="p-4 border-b">Fournisseur</th>
+                <th className="p-4 border-b">Date</th>
+                <th className="p-4 border-b">Statut</th>
+                <th className="p-4 border-b">Produits</th>
+                <th className="p-4 border-b">Montant</th>
+                <th className="p-4 border-b">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orders.map((order) => (
+                <tr key={order.id} className="hover:bg-gray-50">
+                  <td className="p-4 border-b">{order.supplier}</td>
+                  <td className="p-4 border-b">{order.date}</td>
+                  <td className="p-4 border-b">
+                    <select
+                      value={order.status}
+                      onChange={(e) => {
+                        const newStatus = e.target.value as 'En attente' | 'En cours' | 'Livré' | 'Annulé';
+                        handleUpdateOrder(order.id, { status: newStatus });
+                      }}
+                      className="p-2 border rounded"
+                    >
+                      <option value="En attente">En attente</option>
+                      <option value="En cours">En cours</option>
+                      <option value="Livré">Livré</option>
+                      <option value="Annulé">Annulé</option>
+                    </select>
+                  </td>
+                  <td className="p-4 border-b">
+                    {order.items.map((item, index) => (
+                      <div key={index} className="flex items-center">
+                        <span className="mr-2">{item.product}</span>
+                        <span className="text-sm">x{item.quantity}</span>
+                      </div>
+                    ))}
+                  </td>
+                  <td className="p-4 border-b">
+                    {order.items.reduce((total, item) => total + (item.quantity * item.price), 0).toFixed(2)}€
+                  </td>
+                  <td className="p-4 border-b">
+                    <button
+                      className="text-red-600 hover:text-red-800"
+                      onClick={() => handleDeleteOrder(order.id)}
+                      title="Supprimer"
+                    >
+                      ❌
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
         
         {/* Tableau des commandes */}
         <div className="overflow-x-auto">
